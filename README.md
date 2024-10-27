@@ -81,4 +81,3 @@ For any questions, feel free to reach out.
 ---
 
 Thank you for checking out my resume!
-```
