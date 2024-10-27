@@ -3,7 +3,7 @@
 
 Welcome to the GitHub repository for my personal resume website! This project is a fully responsive HTML, CSS, and JavaScript resume that is deployed through GitHub Pages for easy access and distribution. You can view it [here](https://maui2023.github.io/resume/).
 
-![Resume Screenshot](https://maui2023.github.io/resume/assets/screenshot.png)
+![Resume Screenshot](https://maui2023.github.io/resume/images/screenshot.png)
 
 ## 🚀 Features
 
