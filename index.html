@@ -1,537 +1,623 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Online Resume</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media='all'"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media='all'" />
     <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap" />
     </noscript>
     <link href="css/font-awesome/css/all.min.css?ver=1.2.1" rel="stylesheet">
     <link href="css/mdb.min.css?ver=1.2.1" rel="stylesheet">
     <link href="css/aos.css?ver=1.2.1" rel="stylesheet">
     <link href="css/main.css?ver=1.2.1" rel="stylesheet">
     <noscript>
-      <style type="text/css">
-        [data-aos] {
-            opacity: 1 !important;
-            transform: translate(0) scale(1) !important;
-        }
-      </style>
+        <style type="text/css">
+            [data-aos] {
+                opacity: 1 !important;
+                transform: translate(0) scale(1) !important;
+            }
+        </style>
     </noscript>
-  </head>
-  <body class="bg-light" id="top">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <style>
+        /* Hide #QResume in regular web view */
+        #QResume {
+            display: none;
+        }
+        
+        /* Show #QResume only when printing */
+        @media print {
+          body {
+            -webkit-print-color-adjust: exact;
+            color-adjust: exact;
+          }
+        
+          .d-print-none {
+            display: none !important;
+          }
+        
+          .resume-container {
+            width: 100%;
+            max-width: 800px; /* Adjusted for lighter print */
+            margin: 0 auto;
+          }
+        
+          /* Display #QResume only in print */
+          #QResume {
+            display: block !important;
+            visibility: visible !important;
+          }
+        }
+    </style>
+</head>
+
+<body class="bg-light" id="top">
     <header class="d-print-none">
-      <div class="container text-center text-lg-left">
-        <div class="pt-4 clearfix">
-          <h1 class="site-title mb-0">My Resume</h1>
-          <div class="site-nav"> 
-            <nav role="navigation">
-              <ul class="nav justify-content-center">
-                <li class="nav-item"><a class="nav-link" href="#about" title="About"><span class="menu-title">About</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#skills" title="Skills"><span class="menu-title">Skills</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#education" title="Education"><span class="menu-title">Education</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#experience" title="Experience"><span class="menu-title">Experience</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#portfolio" title="Portfolio"><span class="menu-title">Portfolio</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#references" title="References"><span class="menu-title">References</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#contact" title="Contact"><span class="menu-title">Contact</span></a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+        <div class="container text-center text-lg-left">
+            <div class="pt-4 clearfix">
+                <h1 class="site-title mb-0">My Resume</h1>
+                <div class="site-nav">
+                    <nav role="navigation">
+                        <ul class="nav justify-content-center">
+                            <li class="nav-item"><a class="nav-link" href="#about" title="About"><span class="menu-title">About</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="#skills" title="Skills"><span class="menu-title">Skills</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="#education" title="Education"><span class="menu-title">Education</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="#experience" title="Experience"><span class="menu-title">Experience</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="#portfolio" title="Portfolio"><span class="menu-title">Portfolio</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="#references" title="References"><span class="menu-title">References</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href="#contact" title="Contact"><span class="menu-title">Contact</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         </div>
-      </div>
     </header>
     <div class="page-content">
-      <div class="container">
-<div class="resume-container">
-  <div class="shadow-1-strong bg-white my-5" id="intro">
-    <div class="bg-info text-white">
-      <div class="cover bg-image"><img src="images/header-background.jpg"/>
-        <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);backdrop-filter: blur(2px);">
-          <div class="text-center p-5">
-            <div class="avatar p-1"><img class="img-thumbnail shadow-2-strong" src="images/avatar.jpg" width="160" height="160"/></div>
-            <div class="header-bio mt-3">
-              <div data-aos="zoom-in" data-aos-delay="0">
-                <h2 class="h1">Nur Asmawi bin Subri</h2>
-                <p>DevSecOps</p>
-              </div>
-              <div class="header-social mb-3 d-print-none" data-aos="zoom-in" data-aos-delay="200">
-                <nav role="navigation">
-                  <ul class="nav justify-content-center">
-                    <li class="nav-item"><a class="nav-link" href="https://twitter.com/templateflip" title="Twitter"><i class="fab fa-twitter"></i><span class="menu-title sr-only">Twitter</span></a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/templateflip" title="Facebook"><i class="fab fa-facebook"></i><span class="menu-title sr-only">Facebook</span></a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/templateflip" title="Instagram"><i class="fab fa-instagram"></i><span class="menu-title sr-only">Instagram</span></a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="https://github.com/templateflip" title="Github"><i class="fab fa-github"></i><span class="menu-title sr-only">Github</span></a>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-              <div class="d-print-none"><a class="btn btn-outline-light btn-lg shadow-sm mt-1 me-3" href="my-resume.pdf" data-aos="fade-right" data-aos-delay="700">Download CV</a><a class="btn btn-info btn-lg shadow-sm mt-1" href="#contact" data-aos="fade-left" data-aos-delay="700">Hire Me</a></div>
+        <div class="container">
+            <div class="resume-container">
+                <div id="pageA">
+                    <div class="shadow-1-strong bg-white my-5" id="intro">
+                        <div class="bg-info text-white">
+                            <div class="cover bg-image"><img src="images/header-background-2.jpg" />
+                                <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);backdrop-filter: blur(2px);">
+                                    <div class="text-center p-5">
+                                        <div class="avatar p-1"><img class="img-thumbnail shadow-2-strong" src="images/avatar.jpg" width="160" height="160" /></div>
+                                        <div class="header-bio mt-3">
+                                            <div data-aos="zoom-in" data-aos-delay="0">
+                                                <h2 class="h1">Nur Asmawi bin Subri</h2>
+                                                <p>DevSecOps</p>
+                                            </div>
+                                            <div class="header-social mb-3 d-print-none" data-aos="zoom-in" data-aos-delay="200">
+                                                <nav role="navigation">
+                                                    <ul class="nav justify-content-center">
+                                                        <li class="nav-item"><a class="nav-link" href="https://halal.ayucoin.club" title="Website"><i class="fab fa-chrome"></i><span class="menu-title sr-only">Website</span></a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/maui.ware" title="Facebook"><i class="fab fa-facebook"></i><span class="menu-title sr-only">Facebook</span></a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="https://t.me/@kucingrempit" title="Telegram"><i class="fab fa-telegram"></i><span class="menu-title sr-only">Telegram</span></a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="https://github.com/maui2023" title="Github"><i class="fab fa-github"></i><span class="menu-title sr-only">Github</span></a></li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="shadow-1-strong bg-white my-5 p-5" id="about">
+                        <div class="about-section">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h2 class="h2 fw-light mb-4">About Me</h2>
+                                    <p>I am passionate about software development. Skilled <strong>Fullstack Developer</strong> and also master of linux distro like Debian & Ubuntu system administration in the field of IT support environment with complex
+                                        technical knowledge and strong time management skills. I am a quick learner and a team worker that gets the job done.</p>
+                                    <p>Experienced in networking-related with installation, maintenance, and troubleshooting since 2010. I am a critical thinker who can work under pressure, knowledgeable, leadership, performance-driven, and detail-oriented
+                                        design professional with significant ability to work as a strong collaborator and perform well in team environments. I'm looking for a new work environment in a related field to fill the position and gain new experience.</p>
+                                </div>
+                                <div class="col-md-5 offset-lg-1">
+                                    <div class="row mt-2">
+                                        <h2 class="h2 fw-light mb-4">Bio</h2>
+                                        <div class="col-sm-5">
+                                            <div class="pb-2 fw-bolder"><i class="far fa-calendar-alt pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Birth</div>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <div class="pb-2">24 July 1984
+                                                <br/>
+                                                <script>
+                                                    var dob = new Date("07/24/1984");
+                                                      //calculate month difference from current date in time
+                                                      var month_diff = Date.now() - dob.getTime();
+                                                      
+                                                      //convert the calculated difference in date format
+                                                      var age_dt = new Date(month_diff); 
+                                                      
+                                                      //extract year from date    
+                                                      var year = age_dt.getUTCFullYear();
+                                                      
+                                                      //now calculate the age of the user
+                                                      var age = Math.abs(year - 1970);
+                                                      
+                                                      //display the calculated age
+                                                      document.write("(Age: " + age + " years)");
+                                                </script>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="pb-2 fw-bolder"><i class="far fa-envelope pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Email</div>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <div class="pb-2">mauisabily@icloud.com
+                                                <br/>maui@sabily.info</div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="pb-2 fw-bolder"><i class="fab fa-linkedin pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Linkedin</div>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <div class="pb-2">https://linkedin.com/in/nur-asmawi-subri</div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="pb-2 fw-bolder"><i class="fas fa-globe pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Website</div>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <div class="pb-2">https://sabily.info
+                                                <br/>https://wasapla.org</div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="pb-2 fw-bolder"><i class="fas fa-phone pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Phone</div>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <div class="pb-2">+601111458944</div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="pb-2 fw-bolder"><i class="fas fa-map-marker-alt pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Address</div>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <div class="pb-2">Desa Setia Wira, Jalan Buku 5, 54100 Dato Keramat, KL</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="pageB">
+                    <div class="shadow-1-strong bg-white my-5 p-5" id="skills">
+                        <div class="skills-section">
+                            <h2 class="h2 fw-light mb-4">Professional Skills</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3"><span class="fw-bolder">HTML5 + CSS + JS</span>
+                                        <div class="progress my-2 rounded" style="height: 20px">
+                                            <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="100" data-aos-anchor=".skills-section" style="width: 95%;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">Master</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3"><span class="fw-bolder">PHP 5.6 / 7.x / 8. x</span>
+                                        <div class="progress my-2 rounded" style="height: 20px">
+                                            <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="200" data-aos-anchor=".skills-section" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">Proficient</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3"><span class="fw-bolder">MySQL & MariaDB</span>
+                                        <div class="progress my-2 rounded" style="height: 20px">
+                                            <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Competent</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3"><span class="fw-bolder">NoSQL (MongoDB)</span>
+                                        <div class="progress my-2 rounded" style="height: 20px">
+                                            <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Competent</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3"><span class="fw-bolder">Cloud (AWS & Hosting)</span>
+                                        <div class="progress my-2 rounded" style="height: 20px">
+                                            <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Competent</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3"><span class="fw-bolder">MS Windows, Ubuntu, Debian & Raspbian OS / Server</span>
+                                        <div class="progress my-2 rounded" style="height: 20px">
+                                            <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">Proficient</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3"><span class="fw-bolder">Proxmox</span>
+                                        <div class="progress my-2 rounded" style="height: 20px">
+                                            <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">Proficient</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3"><span class="fw-bolder">Kali Linux</span>
+                                        <div class="progress my-2 rounded" style="height: 20px">
+                                            <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">Advance</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3"><span class="fw-bolder">Laravel 9 / 10 / 11</span>
+                                        <div class="progress my-2 rounded" style="height: 20px">
+                                            <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">Novice</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--add extra skills-->
+                                <div class="col-md-6">
+                                    <div class="mb-3"><span class="fw-bolder">Microsoft Office (W,E,PP,F,A,P,ON,OD)</span>
+                                        <div class="progress my-2 rounded" style="height: 20px">
+                                            <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="400" data-aos-anchor=".skills-section" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">Master</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3"><span class="fw-bolder">NextCloud</span>
+                                        <div class="progress my-2 rounded" style="height: 20px">
+                                            <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="400" data-aos-anchor=".skills-section" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">Expert</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3"><span class="fw-bolder">Microsoft WSL</span>
+                                        <div class="progress my-2 rounded" style="height: 20px">
+                                            <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="400" data-aos-anchor=".skills-section" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">Expert</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3"><span class="fw-bolder">CPanel, CloudPanel & aaPanel</span>
+                                        <div class="progress my-2 rounded" style="height: 20px">
+                                            <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="400" data-aos-anchor=".skills-section" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">Expert</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3"><span class="fw-bolder">Tuya Smart HOME</span>
+                                        <div class="progress my-2 rounded" style="height: 20px">
+                                            <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="400" data-aos-anchor=".skills-section" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">Expert</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3"><span class="fw-bolder">Home LAB</span>
+                                        <div class="progress my-2 rounded" style="height: 20px">
+                                            <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="500" data-aos-anchor=".skills-section" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">Advance</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3"><span class="fw-bolder">Google Sketch</span>
+                                        <div class="progress my-2 rounded" style="height: 20px">
+                                            <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="600" data-aos-anchor=".skills-section" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">Beginner</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3"><span class="fw-bolder">Adobe CS</span>
+                                        <div class="progress my-2 rounded" style="height: 20px">
+                                            <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="600" data-aos-anchor=".skills-section" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">Beginner</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="shadow-1-strong bg-white my-5 p-5" id="education">
+                        <div class="education-section">
+                            <h2 class="h2 fw-light mb-4">Education</h2>
+                            <div class="timeline">
+                                <div class="timeline-card timeline-card-success" data-aos="fade-in" data-aos-delay="0">
+                                    <div class="timeline-head px-4 pt-3">
+                                        <div class="h5">Diploma of Information Technology <span class="text-muted h6">from UniTAR</span> </div>
+                                    </div>
+                                    <div class="timeline-body px-4 pb-4">
+                                        <div class="text-muted text-small mb-3">2010 - 2016</div>
+                                        <div>This place make me understand how code works, and now i can code.</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-card timeline-card-success" data-aos="fade-in" data-aos-delay="200">
+                                    <div class="timeline-head px-4 pt-3">
+                                        <div class="h5">Electrical & Electronic Engineering (SPM 2001) <span class="text-muted h6">from SM Teknik Kulim</span> </div>
+                                    </div>
+                                    <div class="timeline-body px-4 pb-4">
+                                        <div class="text-muted text-small mb-3">2000 - 2001</div>
+                                        <div>This place generate basic skill to know about hardware & electrical. Including everthing about electronic world.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="pageC">
+                    <div class="shadow-1-strong bg-white my-5 p-5" id="experience">
+                        <div class="work-experience-section">
+                            <h2 class="h2 fw-light mb-4">Work Experience</h2>
+                            <div class="timeline">
+                                <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
+                                    <div class="timeline-head px-4 pt-3">
+                                        <div class="h5">DevSecOps & Consultant <span class="text-muted h6">at Raisd Ai Sdn Bhd</span></div>
+                                    </div>
+                                    <div class="timeline-body px-4 pb-4">
+                                        <div class="text-muted text-small mb-3">Feb 2024 - Present</div>
+                                        <div> * DevSecOps for Limkokwing University Systems
+                                            <br/> * Maintainer LKW CMS1 & CMS3
+                                            <br/> * New LMS for Short Courses System (Php Core)
+                                            <br/> * Acting Chief Technology Officer</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
+                                    <div class="timeline-head px-4 pt-3">
+                                        <div class="h5">DevOps <span class="text-muted h6">at IBPO Group</span></div>
+                                    </div>
+                                    <div class="timeline-body px-4 pb-4">
+                                        <div class="text-muted text-small mb-3">Nov 2023 - Jan 2024</div>
+                                        <div> * DevOps for IBPO Group System
+                                            <br/> * Contribute customize Aria CCS</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
+                                    <div class="timeline-head px-4 pt-3">
+                                        <div class="h5">Developer & Consultant <span class="text-muted h6">at Gemas Lestari Sdn Bhd</span></div>
+                                    </div>
+                                    <div class="timeline-body px-4 pb-4">
+                                        <div class="text-muted text-small mb-3">Jun 2022 - Oct 2023</div>
+                                        <div> * Customize UM - HR System base on Laravel 9
+                                            <br/> * Proxmox VE for BERNAMA & KDN
+                                            <br/> * Migration VMWare to Proxmox (PDRM)
+                                            <br/> * Acting Technical Manager</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="200">
+                                    <div class="timeline-head px-4 pt-3">
+                                        <div class="h5">Software Programmer <span class="text-muted h6">at iSente Sdn Bhd</span></div>
+                                    </div>
+                                    <div class="timeline-body px-4 pb-4">
+                                        <div class="text-muted text-small mb-3">2015</div>
+                                        <div> * Build Ubuntu Server 14.04 LTS.
+                                            <br/> * Run Stock System using (OsPOS).
+                                            <br/> * Modifiation LMS system using Moddle.</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="400">
+                                    <div class="timeline-head px-4 pt-3">
+                                        <div class="h5">Computer Engineer <span class="text-muted h6">at PawaTech Sdn Bhd</span></div>
+                                    </div>
+                                    <div class="timeline-body px-4 pb-4">
+                                        <div class="text-muted text-small mb-3">2013</div>
+                                        <div> * Being Sub-Con to build & activate computer for all Giat Mara Johor.</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="600">
+                                    <div class="timeline-head px-4 pt-3">
+                                        <div class="h5">Operating System Maintainer <span class="text-muted h6">at Sabily Enterprise</span></div>
+                                    </div>
+                                    <div class="timeline-body px-4 pb-4">
+                                        <div class="text-muted text-small mb-3">2008 ~ 2021</div>
+                                        <div> * Sabily OS maintainer - (Open Source OS).
+                                            <br/> * Make Zakat-Calc Applications for Linux OS.
+                                            <br/> * Teach new programmer how to code in linux with GAMBAS.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shadow-1-strong bg-white my-5 p-5 d-print-none" id="portfolio">
+                    <div class="portfolio-section">
+                        <h2 class="h2 fw-light mb-4">Portfolio</h2>
+                        <div class="row g-0">
+                            <div class="col-md-6">
+                                <a href="https://cloud.gerakhas.org/" target="_blank"><img class="img-fluid" src="images/project-1.jpg" width="800" height="500" /></a>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center" data-aos="fade-left" data-aos-delay="100">
+                                <div class="m-4 mt-md-2">
+                                    <p class="text-teal text-small">Linux (Raspbian OS)</p>
+                                    <h3>Special Forces (GGK) WebApps</h3>
+                                    <p class="text-muted">Built highly performant webapps for paperless. Delivered system by Raspberry pi Server. Control Office Automation with HomeBridge, Blocking Ads using Pi-Hole and sharing File Using FileBrowser to save from Virus.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-0 portfolio-reverse">
+                            <div class="col-md-6 d-flex align-items-center" data-aos="fade-right" data-aos-delay="100">
+                                <div class="m-4 mt-md-2 text-end">
+                                    <p class="text-teal text-small">Front & Back end / PHP / CSS / MariaDB</p>
+                                    <h3>Restaurant Website Design</h3>
+                                    <p class="text-muted">Webapps Halal Food Check in supermarkets with complex layouts done using css. Byself no team for this product.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="https://halal.ayucoin.club/" target="_blank"><img class="img-fluid" src="images/project-2.jpg" width="800" height="500" /></a>
+                            </div>
+                        </div>
+                        <div class="row g-0">
+                            <div class="col-md-6">
+                                <a href="https://katering.sabily.info/" target="_blank"><img class="img-fluid" src="images/project-3.jpg" width="800" height="500" /></a>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center" data-aos="fade-left" data-aos-delay="100">
+                                <div class="m-4 mt-md-2">
+                                    <p class="text-teal text-small">NodeJS + MongoDB</p>
+                                    <h3>Booking System</h3>
+                                    <p class="text-muted">Built highly performance website for booking catering. Worked with github team to timely deliver codebase in PHP.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="pageD">
+                    <div class="shadow-1-strong bg-white my-5 p-5" id="references">
+                        <div class="reference-section">
+                            <h2 class="h2 fw-light mb-4">References</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="d-flex mb-2">
+                                        <div class="avatar"><img src="images/reference-image-1.jpg" width="60" height="60" /></div>
+                                        <div class="header-bio m-3 mb-0">
+                                            <h3 class="h6 mb-1" data-aos="fade-left" data-aos-delay="0">Fazli Azran - 0108111181</h3>
+                                            <p class="text-muted text-small" data-aos="fade-left" data-aos-delay="100">Founder / CEO Gemas Lestari Sdn Bhd</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex"><i class="text-secondary fas fa-quote-left"></i>
+                                        <p class="lead mx-2" data-aos="fade-left" data-aos-delay="100">Maui displays exemplary professionalism and is able to take on challenges. He learns quickly and is an asset to any team.</p><i class="text-secondary fas fa-quote-right"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex mb-2">
+                                        <div class="avatar"><img src="images/reference-image-2.jpg" width="60" height="60" /></div>
+                                        <div class="header-bio m-3 mb-0">
+                                            <h3 class="h6 mb-1" data-aos="fade-left" data-aos-delay="0">Sharifudin Hashim - 01155556544</h3>
+                                            <p class="text-muted text-small" data-aos="fade-left" data-aos-delay="100">CEO Raisd Ai Sdn Bhd</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex"><i class="text-secondary fas fa-quote-left"></i>
+                                        <p class="lead mx-2" data-aos="fade-left" data-aos-delay="100">Using his expertise, he automated the security checks into the CI/CD pipeline, making sure every code change was scanned for vulnerabilities before it even reached production. He also designed a robust infrastructure
+                                            in the cloud, with automated monitoring and incident response, so if any issues arose, the system could recover quickly without downtime. Nice person</p><i class="text-secondary fas fa-quote-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <p></p>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="d-flex mb-2">
+                                        <div class="avatar"><img src="images/reference-image-3.jpg" width="60" height="60" /></div>
+                                        <div class="header-bio m-3 mb-0">
+                                            <h3 class="h6 mb-1" data-aos="fade-left" data-aos-delay="0">En Hisham - 0126248035</h3>
+                                            <p class="text-muted text-small" data-aos="fade-left" data-aos-delay="100">Manager iSente Sdn Bhd</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex"><i class="text-secondary fas fa-quote-left"></i>
+                                        <p class="lead mx-2" data-aos="fade-left" data-aos-delay="100">Easy to give opinions in solving network or software problems. Have the advantage of working overtime due to interest in the field of information technology.</p><i class="text-secondary fas fa-quote-right"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex mb-2">
+                                        <div class="avatar"><img src="images/reference-image-4.jpg" width="60" height="60" /></div>
+                                        <div class="header-bio m-3 mb-0">
+                                            <h3 class="h6 mb-1" data-aos="fade-left" data-aos-delay="0">Harisfazillah</h3>
+                                            <p class="text-muted text-small" data-aos="fade-left" data-aos-delay="100">OpenSource Chief - 0196085482</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex"><i class="text-secondary fas fa-quote-left"></i>
+                                        <p class="lead mx-2" data-aos="fade-left" data-aos-delay="100">Maui is an active contributor to open-source projects, where he applies his expertise to improve and maintain various tools. His contributions focus on enhancing security, automating workflows, and ensuring the
+                                            scalability of open-source solutions for the broader tech community.</p><i class="text-secondary fas fa-quote-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <center><img id="QResume" src="images/QR-Resume.png"></center>
+
+                        </div>
+                        </div>
+                        </div>
+                        <div class="shadow-1-strong bg-white my-5 p-5" id="contact">
+                            <div class="contant-section">
+                                <h2 class="h2 fw-light text mb-4">Contact</h2>
+                                <div class="row mb-4">
+                                    <div class="col-md-5" data-aos="fade-left" data-aos-delay="200">
+                                        <div class="mt-1">
+                                            <div class="h6"><i class="fas fa-phone pe-2 text-muted" style="width:24px;opacity:0.85;"></i> +601111458944</div>
+                                            <div class="h6"><i class="far fa-envelope pe-2 text-muted" style="width:24px;opacity:0.85;"></i> maui@sabily.info</div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-5 d-print-none">
+                                        <script>
+                                            function sendToWhatsApp() {
+                                                  var name = document.getElementById('name').value;
+                                                  var email = document.getElementById('email').value;
+                                                  var message = document.getElementById('message').value;
+                                                  
+                                                  // Format the message for WhatsApp
+                                                  var whatsappMessage = `Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
+                                                  
+                                                  // Your WhatsApp number (without the '+' sign, and replace the first '0' with country code '6')
+                                                  var phoneNumber = "601111458944";
+                                                  
+                                                  // WhatsApp URL with encoded message
+                                                  var whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${whatsappMessage}`;
+                                                  
+                                                  // Redirect to WhatsApp
+                                                  window.open(whatsappURL, '_blank');
+                                              }
+                                        </script>
+                                        <form onsubmit="sendToWhatsApp(); return false;">
+                                            <div class="form-outline mb-4">
+                                                <input type="text" id="name" class="form-control" required />
+                                                <label class="form-label" for="name">Name</label>
+                                            </div>
+                                            <div class="form-outline mb-4">
+                                                <input type="email" id="email" class="form-control" required />
+                                                <label class="form-label" for="email">Email address</label>
+                                            </div>
+                                            <div class="form-outline mb-4">
+                                                <textarea class="form-control" style="resize: none;" id="message" rows="4" required></textarea>
+                                                <label class="form-label" for="message">Message</label>
+                                            </div>
+                                            <button class="btn btn-info btn-block mb-4" type="submit">Send</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 d-print-none" data-aos="zoom-in" data-aos-delay="100">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d63739.11903731884!2d101.7291606!3d3.1747699!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc37937ea2323f%3A0xd3607b64bd2e880c!2sBlok%20B%2C%20Jalan%20Buku%205%2C%20Kementah%2C%2054000%20Kuala%20Lumpur%2C%20Wilayah%20Persekutuan%20Kuala%20Lumpur!5e0!3m2!1sms!2smy!4v1658465557659!5m2!1sms!2smy"
+                                    width="500" height="400" style="border:0;width:100%;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="shadow-1-strong bg-white my-5 p-5" id="about">
-    <div class="about-section">
-      <div class="row">
-        <div class="col-md-6">
-          <h2 class="h2 fw-light mb-4">About Me</h2>
-          <p>I am passionate about software development. Skilled <strong>Fullstack Developer</strong> and also master of linux distro like Debian & Ubuntu system administration in the field of IT support environment with complex 
-            technical knowledge and strong time management skills. I am a quick learner and a team worker that gets the job done.</p>
-          <p>Experienced in networking-related with installation, maintenance, and troubleshooting since 2010. I am a critical thinker who can work under pressure, knowledgeable, leadership, performance-driven, and detail-oriented design professional with significant ability to work as a strong collaborator and perform well in team environments. I'm looking for a new work environment in a related field to fill the position and gain new experience.</p>
-        </div>
-        <div class="col-md-5 offset-lg-1">
-          <div class="row mt-2">
-            <h2 class="h2 fw-light mb-4">Bio</h2>
-            <div class="col-sm-5">
-              <div class="pb-2 fw-bolder"><i class="far fa-calendar-alt pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Birth</div>
+        
+        <footer class="pt-4 pb-4 text-muted text-center d-print-none">
+            <div class="container">
+                <div class="my-3">
+                    <div class="h4">Maui sabily</div>
+                    <div class="footer-nav">
+                        <nav role="navigation">
+                            <ul class="nav justify-content-center">
+                                <li class="nav-item"><a class="nav-link" href="https://halal.ayucoin.club" title="Website"><i class="fab fa-chrome"></i><span class="menu-title sr-only">Website</span></a></li>
+                                <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/maui.ware" title="Facebook"><i class="fab fa-facebook"></i><span class="menu-title sr-only">Facebook</span></a></li>
+                                <li class="nav-item"><a class="nav-link" href="https://t.me/@kucingrempit" title="Telegram"><i class="fab fa-telegram"></i><span class="menu-title sr-only">Telegram</span></a></li>
+                                <li class="nav-item"><a class="nav-link" href="https://github.com/maui2023" title="Github"><i class="fab fa-github"></i><span class="menu-title sr-only">Github</span></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <button class="btn btn-info btn-lg shadow-sm mt-1 me-3" id="downloadCV">Download CV</button> 
+                    <button class="btn btn-info btn-lg shadow-sm mt-1" onclick="window.open('https://wasapla.org/01111458944', '_blank')">Hire Me</button>
+                    <script>
+                        document.getElementById("downloadCV").addEventListener("click", function () {
+                            const { jsPDF } = window.jspdf;
+                            const pdf = new jsPDF("p", "pt", "a4");
+                        
+                            // Define the sections to be added on separate pages
+                            const sections = ["pageA", "pageB", "pageC", "pageD"]; // Add or remove section IDs as needed
+                        
+                            const addSectionToPDF = (sectionId, callback) => {
+                                const sectionElement = document.getElementById(sectionId);
+                                if (sectionElement) {
+                                    html2canvas(sectionElement, { scale: 1.2 }).then(canvas => { // Lower scale for reduced size
+                                        const imgData = canvas.toDataURL("image/png");
+                                        const imgWidth = pdf.internal.pageSize.getWidth();
+                                        const pageHeight = pdf.internal.pageSize.getHeight();
+                                        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                        
+                                        pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight, '', 'SLOW'); // SLOW compression for PNG
+                        
+                                        if (callback) callback();
+                                    });
+                                } else if (callback) callback();
+                            };
+                        
+                            // Sequentially add each section to a new page
+                            const addSectionsRecursively = (index) => {
+                                if (index < sections.length) {
+                                    addSectionToPDF(sections[index], () => {
+                                        if (index < sections.length - 1) pdf.addPage();
+                                        addSectionsRecursively(index + 1);
+                                    });
+                                } else {
+                                    pdf.save("My-Resume.pdf");
+                                }
+                            };
+                        
+                            addSectionsRecursively(0);
+                        });
+                    </script>
+                </div>
+                <div class="text-small">
+                    <div class="mb-1">&copy; Material Resume. All rights reserved.</div>
+                    <div>Design - <a href="https://templateflip.com/" target="_blank">TemplateFlip</a></div>
+                </div>
             </div>
-            <div class="col-sm-7">
-              <!--div>
-                <script>
-                date = new Date().toLocaleDateString();
-                caldate = diffDays(new Date('2014-12-19'), new Date('2020-01-01'));
-                document.write(caldate);
-                
-                </script>
-              </div-->
-              <div class="pb-2">24 July 1984<br/>
-                <script>
-                  var dob = new Date("07/24/1984");
-                  //calculate month difference from current date in time
-                  var month_diff = Date.now() - dob.getTime();
-                  
-                  //convert the calculated difference in date format
-                  var age_dt = new Date(month_diff); 
-                  
-                  //extract year from date    
-                  var year = age_dt.getUTCFullYear();
-                  
-                  //now calculate the age of the user
-                  var age = Math.abs(year - 1970);
-                  
-                  //display the calculated age
-                  document.write("(Age: " + age + " years)");
-                </script>
-               </div>
-            </div>
-            <div class="col-sm-5">
-              <div class="pb-2 fw-bolder"><i class="far fa-envelope pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Email</div>
-            </div>
-            <div class="col-sm-7">
-              <div class="pb-2">mauisabily@icloud.com<br/>maui@sabily.info</div>
-            </div>
-            <div class="col-sm-5">
-              <div class="pb-2 fw-bolder"><i class="fab fa-linkedin pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Linkedin</div>
-            </div>
-            <div class="col-sm-7">
-              <div class="pb-2">https://linkedin.com/in/nur-asmawi-subri</div>
-            </div>
-            <div class="col-sm-5">
-              <div class="pb-2 fw-bolder"><i class="fas fa-globe pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Website</div>
-            </div>
-            <div class="col-sm-7">
-              <div class="pb-2">https://sabily.info<br/>https://wasapla.org</div>
-            </div>
-            <div class="col-sm-5">
-              <div class="pb-2 fw-bolder"><i class="fas fa-phone pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Phone</div>
-            </div>
-            <div class="col-sm-7">
-              <div class="pb-2">+601111458944</div>
-            </div>
-            <div class="col-sm-5">
-              <div class="pb-2 fw-bolder"><i class="fas fa-map-marker-alt pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Address</div>
-            </div>
-            <div class="col-sm-7">
-              <div class="pb-2">Desa Setia Wira, Jalan Buku 5, 54100 Dato Keramat, KL</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="shadow-1-strong bg-white my-5 p-5" id="skills">
-    <div class="skills-section">
-      <h2 class="h2 fw-light mb-4">Professional Skills</h2>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="mb-3"><span class="fw-bolder">HTML5 + CSS + JS</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="100" data-aos-anchor=".skills-section" style="width: 95%;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">Master</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">PHP 5.6 / 7.x / 8. x</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="200" data-aos-anchor=".skills-section" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">Proficient</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">MySQL & MariaDB</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Competent</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">NoSQL (MongoDB)</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Competent</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">Cloud (AWS & Hosting)</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Competent</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">MS Windows, Ubuntu, Debian & Raspbian OS / Server</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">Proficient</div>
-            </div>
-          </div>
-          <!--div class="mb-3"><span class="fw-bolder">Raspbian OS / Server</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">Proficient</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">Debian & Ubuntu OS / Server</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">Proficient</div>
-            </div>
-          </div-->
-          <div class="mb-3"><span class="fw-bolder">Proxmox</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">Proficient</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">Kali Linux</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">Advance</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">Laravel 9 / 10 / 11</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">Novice</div>
-            </div>
-          </div>
-        </div>
-        <!--add extra skills-->
-        <div class="col-md-6">
-          <div class="mb-3"><span class="fw-bolder">Microsoft Office (W,E,PP,F,A,P,ON,OD)</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="400" data-aos-anchor=".skills-section" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">Master</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">NextCloud</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="400" data-aos-anchor=".skills-section" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">Expert</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">Microsoft WSL</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="400" data-aos-anchor=".skills-section" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">Expert</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">CPanel, CloudPanel & aaPanel</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="400" data-aos-anchor=".skills-section" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">Expert</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">Tuya Smart HOME</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="400" data-aos-anchor=".skills-section" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">Expert</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">Home LAB</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="500" data-aos-anchor=".skills-section" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">Advance</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">Google Sketch</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="600" data-aos-anchor=".skills-section" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">Beginner</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">Adobe CS</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="600" data-aos-anchor=".skills-section" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">Beginner</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="shadow-1-strong bg-white my-5 p-5" id="education">
-    <div class="education-section">
-      <h2 class="h2 fw-light mb-4">Education</h2>
-      <div class="timeline">
-        <div class="timeline-card timeline-card-success" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Diploma of Information Technology <span class="text-muted h6">from UniTAR</span>          </div>
-          </div>
-          <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">2010 - 2016</div>
-            <div>This place make me understand how code works, and now i can code.</div>
-          </div>
-        </div>
-        <div class="timeline-card timeline-card-success" data-aos="fade-in" data-aos-delay="200">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Electrical & Electronic Engineering (SPM 2001) <span class="text-muted h6">from SM Teknik Kulim</span>          </div>
-          </div>
-          <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">2000 - 2001</div>
-            <div>This place generate basic skill to know about hardware & electrical. Including everthing about electronic world.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="shadow-1-strong bg-white my-5 p-5" id="experience">
-    <div class="work-experience-section">
-      <h2 class="h2 fw-light mb-4">Work Experience</h2>
-      <div class="timeline">
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">DevSecOps & Consultant <span class="text-muted h6">at Raisd Ai Sdn Bhd</span></div>
-          </div>
-          <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">Feb 2024 - Present</div>
-            <div> * DevSecOps for Limkokwing University Systems<br/> * Maintainer LKW CMS1 & CMS3<br/> * New LMS for Short Courses System (Php Core)<br/> * Acting Chief Technology Officer</div>
-          </div>
-        </div>
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">DevOps <span class="text-muted h6">at IBPO Group</span></div>
-          </div>
-          <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">Nov 2023 - Jan 2024</div>
-            <div> * DevOps for IBPO Group System<br/> * Contribute customize Aria CCS</div>
-          </div>
-        </div>
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Developer & Consultant <span class="text-muted h6">at Gemas Lestari Sdn Bhd</span></div>
-          </div>
-          <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">Jun 2022 - Oct 2023</div>
-            <div> * Customize UM - HR System base on Laravel 9 <br/> * Proxmox VE for BERNAMA & KDN<br/> * Migration VMWare to Proxmox (PDRM)<br/> * Acting Technical Manager</div>
-          </div>
-        </div>
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="200">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Software Programmer <span class="text-muted h6">at iSente Sdn Bhd</span></div>
-          </div>
-          <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">2015</div>
-            <div> * Build Ubuntu Server 14.04 LTS.<br/> * Run Stock System using (OsPOS).<br/> * Modifiation LMS system using Moddle.</div>
-          </div>
-        </div>
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="400">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Computer Engineer <span class="text-muted h6">at PawaTech Sdn Bhd</span></div>
-          </div>
-          <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">2013</div>
-            <div> * Being Sub-Con to build & activate computer for all Giat Mara Johor.</div>
-          </div>
-        </div>
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="600">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Operating System Maintainer <span class="text-muted h6">at Sabily Enterprise</span></div>
-          </div>
-          <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">2008 ~ 2021</div>
-            <div> * Sabily OS maintainer - (Open Source OS).<br/> * Make Zakat-Calc Applications for Linux OS.<br/> * Teach new programmer how to code in linux with GAMBAS.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="shadow-1-strong bg-white my-5 p-5 d-print-none" id="portfolio">
-    <div class="portfolio-section">
-      <h2 class="h2 fw-light mb-4">Portfolio</h2>
-      <div class="row g-0">
-        <div class="col-md-6"><a href="https://cloud.gerakhas.org/" target="_blank"><img class="img-fluid" src="images/project-1.jpg" width="800" height="500"/></a></div>
-        <div class="col-md-6 d-flex align-items-center" data-aos="fade-left" data-aos-delay="100">
-          <div class="m-4 mt-md-2">
-            <p class="text-teal text-small">Linux (Raspbian OS)</p>
-            <h3>Special Forces (GGK) WebApps</h3>
-            <p class="text-muted">Built highly performant webapps for paperless. Delivered system by Raspberry pi Server. Control Office Automation with HomeBridge, Blocking Ads using Pi-Hole and sharing File Using FileBrowser to save from Virus.</p>
-          </div>
-        </div>
-      </div>
-      <div class="row g-0 portfolio-reverse">
-        <div class="col-md-6 d-flex align-items-center" data-aos="fade-right" data-aos-delay="100">
-          <div class="m-4 mt-md-2 text-end">
-            <p class="text-teal text-small">Front & Back end / PHP / CSS / MariaDB</p>
-            <h3>Restaurant Website Design</h3>
-            <p class="text-muted">Webapps Halal Food Check in supermarkets with complex layouts done using css. Byself no team for this product.</p>
-          </div>
-        </div>
-        <div class="col-md-6"><a href="https://halal.ayucoin.club/" target="_blank"><img class="img-fluid" src="images/project-2.jpg" width="800" height="500"/></a></div>
-      </div>
-      <div class="row g-0">
-        <div class="col-md-6"><a href="https://katering.sabily.info/" target="_blank"><img class="img-fluid" src="images/project-3.jpg" width="800" height="500"/></a></div>
-        <div class="col-md-6 d-flex align-items-center" data-aos="fade-left" data-aos-delay="100">
-          <div class="m-4 mt-md-2">
-            <p class="text-teal text-small">NodeJS + MongoDB</p>
-            <h3>Booking System</h3>
-            <p class="text-muted">Built highly performance website for booking catering. Worked with github team to timely deliver codebase in PHP.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="shadow-1-strong bg-white my-5 p-5" id="references">
-    <div class="reference-section">
-      <h2 class="h2 fw-light mb-4">References</h2>
-      <div class="row"> 
-        <div class="col-md-6">
-          <div class="d-flex mb-2">
-            <div class="avatar"><img src="images/reference-image-1.jpg" width="60" height="60"/></div>
-            <div class="header-bio m-3 mb-0">
-              <h3 class="h6 mb-1" data-aos="fade-left" data-aos-delay="0">Fazli Azran</h3>
-              <p class="text-muted text-small" data-aos="fade-left" data-aos-delay="100">Founder / CEO Gemas Lestari Sdn Bhd</p>
-            </div>
-          </div>
-          <div class="d-flex"><i class="text-secondary fas fa-quote-left"></i>
-            <p class="lead mx-2" data-aos="fade-left" data-aos-delay="100">Maui displays exemplary professionalism and is able to take on challenges. He learns quickly and is an asset to any team.</p><i class="text-secondary fas fa-quote-right"></i>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="d-flex mb-2">
-            <div class="avatar"><img src="images/reference-image-2.jpg" width="60" height="60"/></div>
-            <div class="header-bio m-3 mb-0">
-              <h3 class="h6 mb-1" data-aos="fade-left" data-aos-delay="0">Sharifudin Hashim</h3>
-              <p class="text-muted text-small" data-aos="fade-left" data-aos-delay="100">CEO Raisd Ai Sdn Bhd</p>
-            </div>
-          </div>
-          <div class="d-flex"><i class="text-secondary fas fa-quote-left"></i>
-            <p class="lead mx-2" data-aos="fade-left" data-aos-delay="100">Using his expertise, he automated the security checks into the CI/CD pipeline, making sure every code change was scanned for vulnerabilities before it even reached production. He also designed a robust infrastructure in the cloud, with automated monitoring and incident response, so if any issues arose, the system could recover quickly without downtime. Nice person</p><i class="text-secondary fas fa-quote-right"></i>
-          </div>
-        </div>
-      </div>
-      <div><p></p></div>
-      <div class="row"> 
-        <div class="col-md-6">
-          <div class="d-flex mb-2">
-            <div class="avatar"><img src="images/reference-image-3.jpg" width="60" height="60"/></div>
-            <div class="header-bio m-3 mb-0">
-              <h3 class="h6 mb-1" data-aos="fade-left" data-aos-delay="0">En Hisham</h3>
-              <p class="text-muted text-small" data-aos="fade-left" data-aos-delay="100">Manager iSente Sdn Bhd</p>
-            </div>
-          </div>
-          <div class="d-flex"><i class="text-secondary fas fa-quote-left"></i>
-            <p class="lead mx-2" data-aos="fade-left" data-aos-delay="100">Easy to give opinions in solving network or software problems. Have the advantage of working overtime due to interest in the field of information technology.</p><i class="text-secondary fas fa-quote-right"></i>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="d-flex mb-2">
-            <div class="avatar"><img src="images/reference-image-4.jpg" width="60" height="60"/></div>
-            <div class="header-bio m-3 mb-0">
-              <h3 class="h6 mb-1" data-aos="fade-left" data-aos-delay="0">Harisfazillah</h3>
-              <p class="text-muted text-small" data-aos="fade-left" data-aos-delay="100">OpenSource Chief</p>
-            </div>
-          </div>
-          <div class="d-flex"><i class="text-secondary fas fa-quote-left"></i>
-            <p class="lead mx-2" data-aos="fade-left" data-aos-delay="100">Maui is an active contributor to open-source projects, where he applies his expertise to improve and maintain various tools. His contributions focus on enhancing security, automating workflows, and ensuring the scalability of open-source solutions for the broader tech community.</p><i class="text-secondary fas fa-quote-right"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="shadow-1-strong bg-white my-5 p-5" id="contact">
-    <div class="contant-section">
-      <h2 class="h2 fw-light text mb-4">Contact</h2>
-      <div class="row mb-4">
-        <div class="col-md-5" data-aos="fade-left" data-aos-delay="200">
-          <div class="mt-1">
-            <div class="h6"><i class="fas fa-phone pe-2 text-muted" style="width:24px;opacity:0.85;"></i> +601111458944</div>
-            <div class="h6"><i class="far fa-envelope pe-2 text-muted" style="width:24px;opacity:0.85;"></i> maui@sabily.info</div>
-          </div>
-        <div class="mt-5 d-print-none">
-      <script>
-          function sendToWhatsApp() {
-              var name = document.getElementById('name').value;
-              var email = document.getElementById('email').value;
-              var message = document.getElementById('message').value;
-              
-              // Format the message for WhatsApp
-              var whatsappMessage = `Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
-              
-              // Your WhatsApp number (without the '+' sign, and replace the first '0' with country code '6')
-              var phoneNumber = "601111458944";
-              
-              // WhatsApp URL with encoded message
-              var whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${whatsappMessage}`;
-              
-              // Redirect to WhatsApp
-              window.open(whatsappURL, '_blank');
-          }
-      </script>
-    <form onsubmit="sendToWhatsApp(); return false;">
-        <div class="form-outline mb-4">
-            <input type="text" id="name" class="form-control" required />
-            <label class="form-label" for="name">Name</label>
-        </div>
-        <div class="form-outline mb-4">
-            <input type="email" id="email" class="form-control" required />
-            <label class="form-label" for="email">Email address</label>
-        </div>
-        <div class="form-outline mb-4">
-            <textarea class="form-control" style="resize: none;" id="message" rows="4" required></textarea>
-            <label class="form-label" for="message">Message</label>
-        </div>
-        <button class="btn btn-info btn-block mb-4" type="submit">Send</button>
-    </form>
-          </div>
-        </div>
-        <!--div class="col-md-7 d-print-none" data-aos="zoom-in" data-aos-delay="100"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d496.9774799129763!2d-73.98032087190995!3d40.765927126473905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258f9cfcb250d%3A0xdb570ddcb766e3a8!2sNew%20York%20City%20Center!5e0!3m2!1sen!2sin!4v1614183731149!5m2!1sen!2sin" width="500" height="400" style="border:0;width:100%;" allowfullscreen="" loading="lazy"></iframe></div-->
-        <div class="col-md-7 d-print-none" data-aos="zoom-in" data-aos-delay="100"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d63739.11903731884!2d101.7291606!3d3.1747699!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc37937ea2323f%3A0xd3607b64bd2e880c!2sBlok%20B%2C%20Jalan%20Buku%205%2C%20Kementah%2C%2054000%20Kuala%20Lumpur%2C%20Wilayah%20Persekutuan%20Kuala%20Lumpur!5e0!3m2!1sms!2smy!4v1658465557659!5m2!1sms!2smy" width="500" height="400" style="border:0;width:100%;" allowfullscreen="" loading="lazy"></iframe></div>
-      </div>
-    </div>
-  </div>
-</div></div>
-    </div>
-    <footer class="pt-4 pb-4 text-muted text-center d-print-none">
-      <div class="container">
-        <div class="my-3">
-          <div class="h4">Maui sabily</div>
-          <div class="footer-nav">
-            <nav role="navigation">
-              <ul class="nav justify-content-center">
-                <li class="nav-item"><a class="nav-link" href="https://twitter.com/templateflip" title="Twitter"><i class="fab fa-twitter"></i><span class="menu-title sr-only">Twitter</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/templateflip" title="Facebook"><i class="fab fa-facebook"></i><span class="menu-title sr-only">Facebook</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/templateflip" title="Instagram"><i class="fab fa-instagram"></i><span class="menu-title sr-only">Instagram</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="https://github.com/templateflip" title="Github"><i class="fab fa-github"></i><span class="menu-title sr-only">Github</span></a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <div class="text-small">
-          <div class="mb-1">&copy; Material Resume. All rights reserved.</div>
-          <div>Design - <a href="https://templateflip.com/" target="_blank">TemplateFlip</a></div>
-        </div>
-      </div>
-    </footer>
-    <script src="scripts/mdb.min.js?ver=1.2.1"></script>
-    <script src="scripts/aos.js?ver=1.2.1"></script>
-    <script src="scripts/main.js?ver=1.2.1"></script>
-  </body>
+        </footer>
+        <script src="scripts/mdb.min.js?ver=1.2.1"></script>
+        <script src="scripts/aos.js?ver=1.2.1"></script>
+        <script src="scripts/main.js?ver=1.2.1"></script>
+</body>
+
 </html>
